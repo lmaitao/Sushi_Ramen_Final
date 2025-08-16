@@ -94,7 +94,7 @@ const AdminOrders = () => {
                     <option value="cancelled">Cancelado</option>
                   </select>
                 </td>
-               <td>{formatDate(order.created_at)}</td>
+              <td>{formatDate(order.createdAt)}</td>
                 <td>
                   <Link
                     to={`/admin/orders/${order.id}`}

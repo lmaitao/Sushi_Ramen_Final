@@ -88,14 +88,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla para historial de estados
-CREATE TABLE IF NOT EXISTS order_status_history (
-  id SERIAL PRIMARY KEY,
-  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  status VARCHAR(50) NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- -----------------------------------------------------------
 -- ÍNDICES PARA MEJORAR EL RENDIMIENTO
 -- -----------------------------------------------------------
@@ -107,15 +99,14 @@ CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders(user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
 CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at);
 CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id);
-CREATE INDEX IF NOT EXISTS idx_order_status_history_order_id ON order_status_history(order_id);
 
 -- -----------------------------------------------------------
 -- INSERCIÓN DE DATOS INICIALES
 -- -----------------------------------------------------------
 
--- Insertar datos de usuario admin@sushi.com  pass:123456
+-- Insertar datos de usuarios pass:123456
 INSERT INTO users (name, email, password, role) VALUES 
-('Admin', 'admin@sushi.com', '$2a$12$sZklIWWx.fPqGseDuA5kdeALDzrNEGtPD6.YRqnx6i5bETpiOjhSe', 'admin');
+('Admin', 'admin@sushi.com', '$2a$12$1nCGoOamCtA4tefcBg7RiuomfoPy1S8FOMmM2WNgXcG.sCRqmgaRu', 'admin');
 
 -- Insertar productos
 
@@ -147,5 +138,46 @@ INSERT INTO products (name, description, price, category, image_url, stock) VALU
 ('Combo Ramen + Gyoza', '1 Ramen a elección + 3 gyozas', 16.99, 'combos', 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841', 20),
 ('Combo Sushi + Ramen', '8 piezas de sushi + 1 ramen a elección', 24.99, 'combos', 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841', 15),
 ('Combo Familiar', '32 piezas de sushi + 2 ramen + 6 gyozas + postre', 59.99, 'combos', 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841', 10);
-
-select * from products;
+('Sushi Nigiri Salmón', 'Salmón fresco sobre arroz sazonado, 2 piezas.', 2500, 'sushi', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 50),
+('Sushi Nigiri Atún', 'Atún rojo sobre arroz, 2 piezas.', 2600, 'sushi', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 45),
+('Sushi Roll California', 'Roll con palta, kanikama y pepino, 8 piezas.', 5200, 'sushi', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 60),
+('Sushi Roll Tempura', 'Roll frito con camarón, queso crema y cebollín.', 5800, 'sushi', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 40),
+('Sushi Vegano', 'Roll con tofu, palta, zanahoria y pepino.', 4900, 'sushi', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 35),
+('Ramen Tonkotsu', 'Caldo de cerdo, fideos, huevo, cebollín y chashu.', 8900, 'ramen', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 30),
+('Ramen Shoyu', 'Caldo de soya, fideos, alga nori, huevo y cerdo.', 8500, 'ramen', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 25),
+('Ramen Miso', 'Caldo de miso, maíz, mantequilla, fideos y cerdo.', 8700, 'ramen', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 20),
+('Ramen Vegano', 'Caldo vegetal, tofu, fideos, cebollín y champiñones.', 8200, 'ramen', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 15),
+('Gyozas de Cerdo', 'Empanadillas japonesas rellenas de cerdo, 5 unidades.', 4200, 'entradas', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 40),
+('Edamame', 'Porción de porotos de soya al vapor con sal.', 2900, 'entradas', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 50),
+('Takoyaki', 'Bolitas de pulpo con salsa okonomiyaki y mayonesa.', 4800, 'entradas', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 30),
+('Tempura de Verduras', 'Verduras frescas fritas en tempura.', 3900, 'entradas', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 35),
+('Té Verde Frío', 'Té verde japonés frío sin azúcar.', 1800, 'bebidas', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 100),
+('Ramune Original', 'Bebida japonesa con gas, sabor tradicional.', 2500, 'bebidas', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 80),
+('Agua Mineral', 'Botella de agua mineral sin gas.', 1200, 'bebidas', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 120),
+('Cerveza Japonesa', 'Cerveza importada estilo lager.', 3500, 'bebidas', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 60),
+('Mochi de Té Verde', 'Masa de arroz rellena con helado de matcha.', 3200, 'postres', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 40),
+('Dorayaki', 'Panqueques rellenos con pasta de porotos dulces.', 2800, 'postres', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 35),
+('Helado de Sésamo Negro', 'Helado artesanal con sabor a sésamo negro.', 3500, 'postres', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 30),
+('Cheesecake de Matcha', 'Tarta de queso con té verde japonés.', 3900, 'postres', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 25),
+('Combo Sushi & Ramen', '6 piezas de sushi + ramen a elección.', 11900, 'combos', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 20),
+('Combo Pareja', '12 piezas de sushi + 2 bebidas + 2 postres.', 15900, 'combos', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 15),
+('Combo Familiar', '20 piezas de sushi + 2 ramen + 4 bebidas.', 22900, 'combos', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 10),
+('Combo Vegano', 'Sushi vegano + ramen vegano + bebida.', 10900, 'combos', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 12);
+('Sushi Roll Dragón', 'Roll con camarón tempura, palta y salsa unagi.', 6200, 'sushi', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 40),
+('Sushi Roll Spicy Tuna', 'Atún picante, cebollín y sésamo, 8 piezas.', 5900, 'sushi', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 35),
+('Sushi Roll Philadelphia', 'Salmón, queso crema y palta, 8 piezas.', 6100, 'sushi', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 50),
+('Ramen Picante', 'Caldo miso picante, cerdo, huevo y negi.', 8900, 'ramen', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 25),
+('Ramen Curry Japonés', 'Caldo de curry suave, fideos y pollo.', 8700, 'ramen', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 20),
+('Ramen Frío (Hiyashi Chuka)', 'Fideos fríos con vegetales y salsa de sésamo.', 8200, 'ramen', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 15),
+('Tártaro de Salmón', 'Salmón fresco con palta, cebollín y sésamo.', 4800, 'entradas', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 30),
+('Ceviche Nikkei', 'Pescado blanco con limón, ají y cilantro.', 4900, 'entradas', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 25),
+('Camaron Tempura', 'Camarones fritos en tempura, 5 unidades.', 5200, 'entradas', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 40),
+('Té Matcha Latte', 'Té verde matcha con leche vegetal.', 2800, 'bebidas', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 60),
+('Soda Japonesa Yuzu', 'Refresco cítrico japonés con gas.', 2600, 'bebidas', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 70),
+('Limonada con Jengibre', 'Refrescante mezcla de limón y jengibre.', 2400, 'bebidas', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 80),
+('Mochi de Frutilla', 'Masa de arroz rellena con helado de frutilla.', 3200, 'postres', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 35),
+('Helado de Té Matcha', 'Helado artesanal de matcha japonés.', 3500, 'postres', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 30),
+('Brownie con Helado', 'Brownie tibio con bola de helado de vainilla.', 3900, 'postres', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 25),
+('Combo Ejecutivo', 'Ramen + bebida + postre.', 10900, 'combos', 'https://images.unsplash.com/photo-1606788075761-6c7c4b3e3c3f', 20),
+('Combo Sushi Lovers', '16 piezas de sushi + bebida.', 13900, 'combos', 'https://images.unsplash.com/photo-1604908177522-472c7f3e3c2f', 15),
+('Combo Deluxe', 'Ramen + 8 piezas sushi + postre + bebida.', 16900, 'combos', 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', 10);

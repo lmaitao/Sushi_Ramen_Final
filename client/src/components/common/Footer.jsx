@@ -4,19 +4,17 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="footer bg-dark text-light py-5"> {/* Cambiado a text-light */}
+    <footer className="footer bg-dark text-light py-5">
       <div className="container">
         <div className="row g-4 justify-content-center">
           
-          {/* About Section */}
           <div className="col-xl-4 col-lg-5 col-md-6 text-center">
             <div className="footer-about mx-auto" style={{maxWidth: '300px'}}>
-              <h4 className="text-uppercase mb-3 fw-bold text-white">SUSHI & RAMEN</h4> {/* Texto blanco */}
-              <p className="mb-4" style={{color: '#cccccc'}}> {/* Color gris claro */}
+              <h4 className="text-uppercase mb-3 fw-bold text-white">SUSHI & RAMEN</h4>
+              <p className="mb-4" style={{color: '#cccccc'}}>
                 Ofrecemos los mejores sabores de la cocina japonesa con ingredientes frescos y de alta calidad.
               </p>
               
-              {/* Iconos de redes sociales */}
               <div className="d-flex justify-content-center gap-4 mb-4">
                 <a href="https://www.facebook.com/" 
                    className="text-white"
@@ -43,7 +41,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Opening Hours */}
           <div className="col-xl-3 col-lg-4 col-md-6 text-center">
             <div className="mx-auto" style={{maxWidth: '250px'}}>
               <h5 className="text-uppercase mb-3 fw-bold text-white">HORARIO</h5>
@@ -55,7 +52,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Contact Info */}
           <div className="col-xl-3 col-lg-4 col-md-6 text-center">
             <div className="mx-auto" style={{maxWidth: '250px'}}>
               <h5 className="text-uppercase mb-3 fw-bold text-white">CONTACTO</h5>

@@ -95,7 +95,6 @@ const Orders = () => {
                   <td>
                     <span className={`badge ${
                       order.status === 'completed' ? 'bg-success' :
-                      // eslint-disable-next-line
                       order.status === 'cancelled' ? 'bg-danger' :
                       'bg-warning text-dark'
                     }`}>

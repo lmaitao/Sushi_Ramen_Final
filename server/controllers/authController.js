@@ -162,7 +162,7 @@ export const getMe = async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
-            createdAt: user.created_at
+            createdAt: user.createdAt
         });
     } catch (error) {
         console.error('Get me error:', error);

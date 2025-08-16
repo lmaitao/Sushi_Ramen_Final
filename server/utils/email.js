@@ -4,12 +4,8 @@ import { config } from 'dotenv';
 config(); // Carga las variables de entorno
 
 // Configuración del transportador de correo.
-// Asegúrate de que las variables de entorno para EMAIL_SERVICE, EMAIL_USER, EMAIL_PASS estén configuradas.
 const transporter = nodemailer.createTransport({
-    service: process.env.EMAIL_SERVICE || 'gmail', // Por ejemplo, 'gmail'
-    host: process.env.EMAIL_HOST, 
-    port: process.env.EMAIL_PORT, 
-    secure: process.env.EMAIL_SECURE === 'true', 
+    service: process.env.EMAIL_SERVICE || 'gmail',
     auth: {
         user: process.env.EMAIL_USER, 
         pass: process.env.EMAIL_PASS 

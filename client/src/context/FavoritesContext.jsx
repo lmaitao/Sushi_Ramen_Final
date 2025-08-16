@@ -60,7 +60,7 @@ export const FavoritesProvider = ({ children }) => {
       favorites,
       loading,
       error,
-      fetchFavorites, // Asegúrate de exponer esta función
+      fetchFavorites,
       toggleFavorite,
       isFavorite: (productId) => favorites.some(fav => fav.id === productId)
     }}>

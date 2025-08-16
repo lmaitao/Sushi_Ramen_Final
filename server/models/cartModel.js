@@ -1,5 +1,6 @@
 import pool from '../config/db/db.js';
 
+
 export const getCartByUserId = async (userId) => {
   const { rows } = await pool.query(
     'SELECT c.*, p.name, p.price, p.image_url FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = $1',

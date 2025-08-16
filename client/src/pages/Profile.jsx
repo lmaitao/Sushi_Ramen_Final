@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { Link} from 'react-router-dom';
 import API from '../services/api';
 import { toast } from 'react-hot-toast';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { formatPrice, formatDate } from '../utils/format'; // Asumo que tienes estos utilitarios
+import { formatPrice, formatDate } from '../utils/format';
 
 const Profile = () => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate(); // Inicializa useNavigate
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -163,7 +162,7 @@ const Profile = () => {
                 {user.role === 'admin' && (
                   <Link
                     to="/admin"
-                    className="list-group-item list-group-item-action list-group-item-warning" // Estilo para destacar
+                    className="list-group-item list-group-item-action list-group-item-warning"
                   >
                     Panel Admin
                   </Link>

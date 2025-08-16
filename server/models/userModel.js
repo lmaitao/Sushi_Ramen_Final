@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import pool from '../config/db/db.js'; // Asegúrate de que esta ruta sea correcta
+import pool from '../config/db/db.js';
 import { config } from 'dotenv';
 
 config();

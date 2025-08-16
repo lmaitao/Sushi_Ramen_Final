@@ -23,7 +23,7 @@ const Checkout = () => {
     try {
       const response = await API.post('/orders/checkout', formData);
       
-      // ✅ Corrección: Acceder a response.data.data en lugar de response.data
+      // Acceder a response.data.data en lugar de response.data
       const newOrderId = response.data?.data?.orderId;
       
       if (!newOrderId) {
@@ -36,7 +36,7 @@ const Checkout = () => {
         text: `Tu pedido #${newOrderId} ha sido creado exitosamente`,
         confirmButtonText: 'Ver mis pedidos'
       }).then(() => {
-        // ✅ Mejor: Redirigir directamente al detalle del pedido
+        //Redirigir directamente al detalle del pedido
         navigate(`/orders/${newOrderId}`);
       });
     } catch (error) {

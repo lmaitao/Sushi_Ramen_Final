@@ -1,13 +1,13 @@
 import express from 'express';
 import { 
   getUsers, 
-  getUserById, // <-- ¡NUEVO! Para obtener un usuario específico
+  getUserById,
   updateUserHandler, 
   deleteUserHandler,
   adminCreateProduct,
   adminUpdateProduct,
   adminDeleteProduct,
-  getAllOrders, // <-- ¡NUEVO! Para obtener todos los pedidos
+  getAllOrders,
   adminUpdateOrder,
   getDashboardStats 
 } from '../controllers/adminController.js';
@@ -23,8 +23,8 @@ router.use(adminOnly);
 router.get('/stats', getDashboardStats);
 
 // --- Rutas de Gestión de Usuarios ---
-router.get('/users', getUsers); // Obtener todos los usuarios
-router.get('/users/:id', getUserById); // <-- ¡NUEVA! Obtener un usuario por ID
+router.get('/users', getUsers);
+router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUserHandler);
 router.delete('/users/:id', deleteUserHandler);
 
@@ -34,7 +34,7 @@ router.put('/products/:id', adminUpdateProduct);
 router.delete('/products/:id', adminDeleteProduct);
 
 // --- Rutas de Gestión de Pedidos ---
-router.get('/orders', getAllOrders); // <-- ¡NUEVA! Obtener todos los pedidos
+router.get('/orders', getAllOrders);
 router.put('/orders/:id', adminUpdateOrder);
 
 export default router;

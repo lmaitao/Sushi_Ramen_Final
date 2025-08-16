@@ -1,6 +1,6 @@
 import { findUserById, updateUser } from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
-// Funciones del controlador de usuario
+
 export const updateProfile = async (req, res) => {
     try {
         const { name, email } = req.body;
@@ -23,7 +23,7 @@ export const updateProfile = async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor al actualizar el perfil' });
     }
 };
-// Funciones del controlador de usuario
+
 export const updatePassword = async (req, res) => {
     try {
         const userId = req.user.id;

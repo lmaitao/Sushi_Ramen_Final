@@ -1,6 +1,6 @@
 import { 
   getAllUsers, 
-  findUserById, // Importado para obtener el email del usuario
+  findUserById,
   updateUser, 
   deleteUser,
   countUsers 
@@ -20,9 +20,9 @@ import {
 } from '../models/orderModel.js';
 import { 
   sendOrderCompletionEmail,
-  sendOrderPendingEmail,   // Importado para enviar email de pedido pendiente
-  sendOrderInProcessEmail, // Importado para enviar email de pedido en proceso
-  sendOrderCancelledEmail  // Importado para enviar email de pedido cancelado
+  sendOrderPendingEmail,
+  sendOrderInProcessEmail,
+  sendOrderCancelledEmail 
 } from '../utils/email.js'; 
 
 // --- Funciones de Gestión de Usuarios ---
@@ -226,7 +226,7 @@ export const adminUpdateOrder = async (req, res) => {
         case 'pending':
           await sendOrderPendingEmail(user.email, order);
           break;
-        case 'in process': // Asegúrate de que el estado en DB sea 'in process' o el que uses.
+        case 'processing': 
           await sendOrderInProcessEmail(user.email, order);
           break;
         case 'cancelled':
