@@ -13,7 +13,7 @@ const Home = () => {
     const fetchFeaturedProducts = async () => {
       try {
         const { data } = await API.get('/products', {
-          params: { category: 'sushi', search: 'combo' }
+          params: { category: 'combos' }
         });
         setFeaturedProducts(data.slice(0, 4));
       } catch (error) {
