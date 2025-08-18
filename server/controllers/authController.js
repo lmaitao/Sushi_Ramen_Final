@@ -15,9 +15,19 @@ import jwt from 'jsonwebtoken';
 export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+     // Validación de campos obligatorios
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+      const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ error: 'El email ya está registrado' });
+    }
+
     const user = await createUser(name, email, password);
     const token = generateToken(user.id);
     
+
     res.status(201).json({ 
       token, 
       user: { 
@@ -207,7 +217,7 @@ export const verifyToken = async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
     
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!authHeader || !authHeader.startsWith('Bearer')) {
       return res.status(401).json({ 
         success: false,
         error: 'Formato de token inválido',

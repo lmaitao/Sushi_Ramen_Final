@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../app.js';
+import app from '../server.js';
 import  pool from '../config/db/db.js';
 
 describe('Products API', () => {
@@ -12,7 +12,7 @@ describe('Products API', () => {
       .post('/api/auth/login')
       .send({
         email: 'admin@sushi.com',
-        password: 'Password123'
+        password: '123456'
       });
     
     authToken = res.body.token;
