@@ -1,4 +1,4 @@
-import { useState } from 'react'; // Esta es la línea que faltaba
+import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 const ReviewForm = ({ 
