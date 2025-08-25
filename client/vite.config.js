@@ -12,7 +12,7 @@ export default defineConfig({
     port: 3000, // Puerto para el frontend
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL || 'https://sushi-ramen-final.onrender.com', // URL de tu backend
+        target: process.env.VITE_API_URL || 'https://sushi-ramen-final.onrender.com/', // URL de tu backend
         changeOrigin: true,
         secure: false,
       },

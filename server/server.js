@@ -14,14 +14,11 @@ import { config } from 'dotenv';
 config();
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
 
-Middlewares 
+// Middlewares 
 app.use(cors({
-  origin: [
-    'https://sushi-ramen-final.armc.vercel.app',
-    'https://sushi-ramen-final.vercel.app'
-  ],
+  origin: process.env.FRONTEND_URL || 'https://localhost:3000',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -50,7 +47,7 @@ app.use(errorHandler);
 // Inicio del servidor 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-    console.log(` 🔥 Servidor corriendo en https://sushi-ramen-final.onrender.com${PORT}`);
+    console.log(` 🔥 Servidor corriendo en https://sushi-ramen-final.onrender.com:${PORT}`);
   });
 }
 
