@@ -57,6 +57,9 @@ const AdminProducts = () => {
   return (
     <div className="container my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
+      <Link to="/admin" className="btn btn-secondary">
+                  Volver
+                </Link>
         <h1>Administrar Productos</h1>
         <Link to="/admin/products/new" className="btn btn-primary">
           Añadir Producto

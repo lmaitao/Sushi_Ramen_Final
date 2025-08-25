@@ -46,6 +46,9 @@ const AdminOrders = () => {
   return (
     <div className="container my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
+      <Link to="/admin" className="btn btn-secondary">
+                  Volver
+                </Link>
         <h1>Administrar Pedidos</h1>
         <select
           className="form-select w-auto"
