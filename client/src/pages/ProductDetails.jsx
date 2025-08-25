@@ -190,6 +190,9 @@ const ProductDetails = () => {
               {product.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}
             </button>
           </div>
+          <Link to="/products" className="btn btn-secondary">
+                  Volver
+                </Link>
         </div>
       </div>
     </div>
