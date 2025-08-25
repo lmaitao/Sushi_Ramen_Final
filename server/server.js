@@ -14,13 +14,12 @@ import { config } from 'dotenv';
 config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 // Middlewares 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://localhost:3000',
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: process.env.FRONTEND_URL,
+  credentials: true
 }));
 app.use(morgan('dev'));
 app.use(express.json());
