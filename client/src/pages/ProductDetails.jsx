@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import API from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useFavorites } from '../context/FavoritesContext';
@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import ProductReviews from '../components/reviews/ProductReviews';
 import { FaHeart, FaRegHeart, FaShoppingCart, FaStar } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+
 
 const ProductDetails = () => {
   const { id } = useParams();
