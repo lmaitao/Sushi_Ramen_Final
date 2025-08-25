@@ -16,9 +16,12 @@ config();
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Middlewares 
+Middlewares 
 app.use(cors({
-  origin: 'https://sushi-ramen-final-armc.vercel.app',
+  origin: [
+    'https://sushi-ramen-final.armc.vercel.app',
+    'https://sushi-ramen-final.vercel.app'
+  ],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
