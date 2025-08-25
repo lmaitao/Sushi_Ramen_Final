@@ -14,7 +14,7 @@ import { config } from 'dotenv';
 config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 // Middlewares 
 app.use(cors({
@@ -47,7 +47,7 @@ app.use(errorHandler);
 // Inicio del servidor 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-    console.log(` 🔥 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(` 🔥 Servidor corriendo en https://sushi-ramen-final.onrender.com${PORT}`);
   });
 }
 
