@@ -17,10 +17,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middlewares 
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true
-}));
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/product-images', express.static('path/to/your/images/folder'));
