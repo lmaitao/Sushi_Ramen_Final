@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://sushi-ramen-final-armc.vercel.app',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
