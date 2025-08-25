@@ -7,8 +7,8 @@ config(); // Carga las variables de entorno
 const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE || 'gmail',
     auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS 
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     },
     tls: {
       rejectUnauthorized: false // Solo para desarrollo, no usar en producción sin un certificado válido
